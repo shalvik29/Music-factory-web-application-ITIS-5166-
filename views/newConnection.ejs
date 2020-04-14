@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Connection</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/CSS" href="../assets/stylesheets/styles.css">
+</head>
+<body>
+
+    <%- include ('partials/header.ejs') %>
+    <%- include ('partials/navigation.ejs') %>
+
+    <form class="newconnect">
+        <label for="topic">Topic: </label>
+        <input type="text" id="topic" name="topic"><br><br>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="details">Details: </label>
+        <input type="text" id="details" name="details"><br><br>
+        <label for="where">Where: </label>
+        <input type="text" id="where" name="location"><br><br>
+        <label for="when">When: </label>
+        <input type="date" id="when" name="when">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+        <input class="submit" type="submit" value="Submit">
+    </form>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+</html>

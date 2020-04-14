@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Connection</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/CSS" href="../assets/stylesheets/styles.css">
+</head>
+<body>
+
+    <%- include ('partials/header.ejs') %>
+    <%- include ('partials/navigation.ejs') %>
+
+    <div class="rsvp">
+        <p>Are you going? </p>
+        <button type="submit" onclick="window.location.href='/savedConnections/save?connectionId=<%= connection.Id %>&rsvp=Yes'">Yes</button>
+        <button type="submit" onclick="window.location.href='/savedConnections/save?connectionId=<%= connection.Id %>&rsvp=No'">No</button>
+        <button type="submit" onclick="window.location.href='/savedConnections/save?connectionId=<%= connection.Id %>&rsvp=May Be'">May be</button>
+    </div>
+    <div class="detail">
+        <img src="../assets/images/coldplay.jfif" height="50" width="50" alt="coldplay"> 
+        <h3><%= connection.Name %></h3>
+        <ul>
+            <li> Topic: <%= connection.topic %> </li>
+            <li> Date: <%= connection.date %> </li>
+            <li> Time: <%= connection.time %> </li>
+            <li> Location: <%= connection.location %> </li>
+            <li> Details: <%= connection.details %> </li>
+        </ul>
+    </div>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+</html>

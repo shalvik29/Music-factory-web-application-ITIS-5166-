@@ -1,0 +1,158 @@
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.header {
+  overflow: hidden;
+  padding-top: 20px;
+  padding-left: 20px;
+  background-color: #333;
+}
+.image {
+  float: left;
+  background-color: #333;
+  padding-top:20px;
+  padding-left:20px;
+  padding-bottom: 2px;
+  overflow: hidden;  
+}
+.connections a {
+    float: left;
+    background-color: #333;
+    width: 100%;
+    display: block;
+    color: #f2f2f2;
+    text-align: left;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.savconnections a {
+  float: left;
+  background-color: #333;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Style the header links */
+.header a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Style the content */
+.content {
+  background-color: #ddd;
+  text-align: left;
+  display: block;
+  padding-top: 175px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 125px;
+  height: 500px; /* Should be removed. Only for demonstration */
+}
+
+.detail {
+  float: left;
+  background-color:white;
+  padding-top: 100px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  height: 435px;
+}
+
+.rsvp {
+  float: right;
+  background-color: white;
+  padding-top: 150px;
+  padding-right: 20px;
+  padding-left: 12px;
+  padding-bottom: 228px;
+} 
+/* Style the footer */
+.footer {
+  background-color: #333;
+}
+
+.footer a {
+  float: left;
+  display: block;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer img {
+  float: right;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+table {
+  width: 100%;
+  border: 1;
+}
+.newconnect {
+  background-color: #ddd;
+  text-align: left;
+  padding-top: 100px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 125px;
+  height: 500px;
+} 
+
+.about {
+  background-color: #ddd;
+  text-align: left;
+  display: block;
+  padding-top: 175px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 125px;
+  height: 500px; /* Should be removed. Only for demonstration */
+}
+
+input[type=text] {
+  width: 50%;
+  padding: 6px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  width: 50%;
+  padding: 6px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+input[type=date] {
+  width: 50%;
+  padding: 6px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.submit {
+  width: auto;
+  padding: 7px;
+  background-color: #333;
+  color: #f2f2f2;
+}
+#details {
+  height: 100px;
+}

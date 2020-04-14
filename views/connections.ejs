@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Connections</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/CSS" href="../assets/stylesheets/styles.css">
+</head>
+<body>
+
+    <%- include ('partials/header.ejs') %>
+    <%- include ('partials/navigation.ejs') %>
+
+    <div class="content">
+        <h2><%= ConcertConnections[1].topic %></h2>
+        <% for(var i=0; i < ConcertConnections.length; i++) { %>
+            <a href="/connections?connectionId=<%= ConcertConnections[i].Id %>"><%= ConcertConnections[i].Name %></a><br>
+        <% } %>
+        <h2><%= LiveConnections[1].topic %></h2>
+        <% for(var i=0; i < LiveConnections.length; i++) { %>
+            <a href="/connections?connectionId=<%= LiveConnections[i].Id %>"><%= LiveConnections[i].Name %></a><br>
+        <% } %>
+    </div>
+
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+</html>

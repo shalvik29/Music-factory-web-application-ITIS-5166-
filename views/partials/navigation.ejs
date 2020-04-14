@@ -1,0 +1,13 @@
+<div class="connections">
+    <a href="/connections">connections</a>    
+</div>
+<div class="header">
+    <a href="/newConnection">Start a new connection</a>
+    <% if(loggedIn) { %>
+        <a href="/savedConnections/myConnections">My Connections</a>
+        <a href="/savedConnections/signout">Sign Out</a>
+    <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/login">Sign Up</a>
+    <% } %>
+</div>

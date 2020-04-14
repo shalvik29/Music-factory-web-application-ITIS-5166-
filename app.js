@@ -1,0 +1,44 @@
+var express = require('express');
+var app = express();
+var session = require('express-session');
+
+app.set('view engine', 'ejs');
+app.use('/assets/stylesheets', express.static('assets/stylesheets'));
+app.use('/assets/images', express.static('assets/images'));
+
+var connectionsRouter = require('./controller/connectionController');
+var userProfileRouter = require('./controller/userProfileController');
+
+app.use(session({secret: 'user'}));
+
+//middleware
+app.use('/connections',connectionsRouter);
+app.use('/savedConnections', userProfileRouter);
+app.use('/signout', userProfileRouter);
+
+//routes 
+app.get('/index', function(req,res) {
+    res.render('index', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.get('/about', function(req,res) {
+    res.render('about', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.get('/contact', function(req,res) {
+    res.render('contact', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.get('/newConnection', function(req,res) {
+    res.render('newConnection', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.get('/login', function(req,res) {
+    res.render('login', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.get('/*', function(req,res) {
+    res.render('index', {loggedIn : (req.session.users) ? true: false});
+});
+
+app.listen(8084);

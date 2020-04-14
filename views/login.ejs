@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" type="text/CSS" href="../assets/stylesheets/styles.css">
+</head>
+<body>
+    
+    <%- include ('partials/header.ejs') %>
+    <%- include ('partials/navigation.ejs') %>
+
+    <div class="newconnect">
+        <p>Please enter your username and signin</p>
+        <form action="/savedConnections/myConnections">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="name"><br><br>
+            <input class="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <%- include ('partials/footer.ejs') %>
+
+</body>
+</html>

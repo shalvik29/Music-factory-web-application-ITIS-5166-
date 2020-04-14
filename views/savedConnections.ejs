@@ -1,0 +1,39 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Saved Connections</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/CSS" href="../assets/stylesheets/styles.css">
+</head>
+<body>
+
+  <%- include ('partials/header.ejs') %>
+  <%- include ('partials/navSavedConnections.ejs') %>
+
+  <div class="content">
+    <h2>My Connections</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th>Connection</th>
+        <th>Category</th>
+        <th>Going</th>
+        <th>Status </th>
+      </tr>
+      <% for(var i = 0; i < userEvents.length; i++) { %>
+      <tr>
+        <td><%= userEvents[i].connectionName %></td>
+        <td><%= userEvents[i].category %></td>
+        <td><%= userEvents[i].rsvp %></td>
+        <td>
+          <button type="submit" onclick="window.location.href='/connections?connectionId=<%= userEvents[i].connectionId%>'"> Update</button>
+          <button type="submit" onclick="window.location.href='/savedConnections/delete?connectionId=<%= userEvents[i].connectionId %>'"> Delete</button>            
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+
+  <%- include ('partials/footer.ejs') %>
+
+</body>
+</html>
