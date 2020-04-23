@@ -1,5 +1,6 @@
 var connectionObj = require('./connectionDB');
 var userObj = require('./userDB');
+var userProfile = require('../models/userProfile');
 var userConnection = require('../models/userConnection');
 var express = require('express');
 var router = express.Router();
@@ -11,25 +12,25 @@ router.use(session({
 }));
 
 async function addConnections (connectionId, rsvp,userId) {
-    console.log(userId);
+
     var connection = await connectionObj.getConnectionById(connectionId);
-    console.log("connection: "+connection);
-    await userConnection.addConnectionToUser(connection.Id, connection.Name, connection.topic, rsvp, userId);
-    console.log(`Connection with id ${connectionId} added to the user profile`);
+    // console.log("connection: "+connection);
+    await userProfile.addConnectionToUser(connection.Id, connection.Name, connection.topic, rsvp, userId);
+    // console.log(`Connection with id ${connectionId} added to the user profile`);
     var userRegisterConnections = await userProfileConnections(userId);
-    console.log(userRegisterConnections);
+    // console.log(userRegisterConnections);
     return userRegisterConnections;
 }
 
 async function removeConnections(connectionId, userId) {
 
-    await userConnection.deleteUserProfileconnection(connectionId,userId);
+    await userProfile.deleteUserProfileconnection(connectionId,userId);
     return userProfileConnections(userId);
 }
 
 async function updateConnections (connectionId, rsvp, userId, userConnections) {
 
-    await userConnection.updateUserProfileconnections(connectionId,userId,rsvp);
+    await userProfile.updateUserProfileconnections(connectionId,userId,rsvp);
     var userConnections = await userProfileConnections(userId);
     return userConnections;
 
@@ -51,7 +52,7 @@ async function signOut(sessionObj) {
 
 async function userProfileConnections(userId){
 
-    var connections = await userConnection.getUserProfileconnections(userId);
+    var connections = await userProfile.getUserProfileconnections(userId);
     console.log('Service Class'+JSON.stringify(connections));
     return connections;
 }

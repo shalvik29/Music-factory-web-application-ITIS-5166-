@@ -1,67 +1,25 @@
-class connection {
-    constructor(Id, Name, topic, details, date, time, location) {
-      this.Id = Id;
-      this.Name = Name;
-      this.topic = topic;
-      this.details = details;
-      this.date = date;
-      this.time = time;
-      this.location = location;
-    }
-  
-    getId() {
-      return this.Id;
-    }
-  
-    setId(Id) {
-      this.Id = Id;
-    }
-  
-    getName() {
-      return this.Name;
-    }
-  
-    setName(Name) {
-      this.Name = Name;
-    }
-    gettopic() {
-      return this.topic;
-    }
-  
-    settopic(topic) {
-      this.topic = topic;
-    }
-    getdetails() {
-      return this.details;
-    }
-  
-    setdetails(details) {
-      this.details = details;
-    }
+var mongoose = require('mongoose');
 
-    getdate() {
-       return this.date;
-    }
-    
-    setdate(date) {
-      this.date = date;
-    }
-    
-    gettime() {
-        return this.time;
-    }
+var connectionSchema = new mongoose.Schema({
+    Id : {type: Number},
+    Name : {type: String},
+    topic : {type: String},
+    details : {type: String},
+    date : {type: String},
+    time : {type: String},
+    location : {type: String}
+});
 
-    settime(time) {
-        this.time = time;
-    }
+var counterSchema = new mongoose.Schema({
+    _id: {type: String},
+    sequenceValue: {type: Number},
+    sequence_value: {type: Number}
+});
 
-    getlocation() {
-        return this.location;
-    } 
+var Connection = mongoose.model('connection', connectionSchema);
 
-    setlocation(location) {
-        this.location = location;
-    }
-}
+var Counter = mongoose.model('counter',counterSchema);
 
-module.exports.connection = connection;
+
+module.exports.Connection = Connection;
+module.exports.Counter = Counter;
