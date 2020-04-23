@@ -55,6 +55,16 @@ body {
 }
 
 /* Style the content */
+.connect {
+  background-color: #ddd;
+  text-align: left;
+  display: block;
+  padding-top: 60px;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 60px;
+}
+
 .content {
   background-color: #ddd;
   text-align: left;
@@ -63,7 +73,7 @@ body {
   padding-left: 300px;
   padding-right: 300px;
   padding-bottom: 125px;
-  height: 500px; /* Should be removed. Only for demonstration */
+  height: 500px;
 }
 
 .detail {
@@ -108,10 +118,10 @@ table {
 .newconnect {
   background-color: #ddd;
   text-align: left;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-left: 300px;
   padding-right: 300px;
-  padding-bottom: 125px;
+  padding-bottom: 100px;
   height: 500px;
 } 
 

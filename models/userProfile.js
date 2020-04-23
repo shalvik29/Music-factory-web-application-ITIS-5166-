@@ -1,26 +1,26 @@
 
-class userProfile {
-    constructor(userId, userEvent){
-        this.userId = userId;
-        this.userEvent = userEvent;
-    }
+// class userProfile {
+//     constructor(userId, userEvent){
+//         this.userId = userId;
+//         this.userEvent = userEvent;
+//     }
 
-    getuserId() {
-        return this.userId;
-    }
+//     getuserId() {
+//         return this.userId;
+//     }
 
-    setuserId(userId) {
-        this.userId = userId;
-    }
+//     setuserId(userId) {
+//         this.userId = userId;
+//     }
 
-    getuserEvent() {
-      return this.userEvent;
-    }
+//     getuserEvent() {
+//       return this.userEvent;
+//     }
   
-    setuserEvent(userEvent) {
-      this.userEvent = userEvent;
-    }
+//     setuserEvent(userEvent) {
+//       this.userEvent = userEvent;
+//     }
 
-}
+// }
 
-module.exports.userProfile = userProfile;
+// module.exports.userProfile = userProfile;

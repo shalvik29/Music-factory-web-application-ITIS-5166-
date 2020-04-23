@@ -1,12 +1,22 @@
 var express = require('express');
 var app = express();
 var session = require('express-session');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/musicFactory', {useNewUrlParser: true});
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log(`We are connected to the musicFactory database`);
+});
 
 app.set('view engine', 'ejs');
 app.use('/assets/stylesheets', express.static('assets/stylesheets'));
 app.use('/assets/images', express.static('assets/images'));
 
 var connectionsRouter = require('./controller/connectionController');
+var addConnectionRouter = require('./controller/addConnectionController');
 var userProfileRouter = require('./controller/userProfileController');
 
 app.use(session({secret: 'user'}));
@@ -15,6 +25,7 @@ app.use(session({secret: 'user'}));
 app.use('/connections',connectionsRouter);
 app.use('/savedConnections', userProfileRouter);
 app.use('/signout', userProfileRouter);
+app.use('/addConnection', addConnectionRouter);
 
 //routes 
 app.get('/index', function(req,res) {

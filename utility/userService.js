@@ -10,74 +10,62 @@ router.use(session({
     cookie: { secure: true }
 }));
 
-var addConnections = (connectionId, rsvp, userConnections) => {
-
-    var connection = connectionObj.getConnectionById(connectionId);
+async function addConnections (connectionId, rsvp,userId) {
+    console.log(userId);
+    var connection = await connectionObj.getConnectionById(connectionId);
     console.log("connection: "+connection);
-    var newConnection = new userConnection.userConnection(connection.Id, connection.Name, connection.topic, rsvp);
+    await userConnection.addConnectionToUser(connection.Id, connection.Name, connection.topic, rsvp, userId);
     console.log(`Connection with id ${connectionId} added to the user profile`);
-    userConnections.push(newConnection);
-    return userConnections;
+    var userRegisterConnections = await userProfileConnections(userId);
+    console.log(userRegisterConnections);
+    return userRegisterConnections;
 }
 
-var removeConnections = function (connectionId, userConnections) {
+async function removeConnections(connectionId, userId) {
 
-    console.log(`Connection with id ${connectionId} removed from the user profile`);
-    for (var i = userConnections.length - 1; i >= 0; i--) {
-        if (userConnections[i].connectionId === connectionId) {
-            userConnections.splice(i, 1);
-        }
-    }
+    await userConnection.deleteUserProfileconnection(connectionId,userId);
+    return userProfileConnections(userId);
+}
+
+async function updateConnections (connectionId, rsvp, userId, userConnections) {
+
+    await userConnection.updateUserProfileconnections(connectionId,userId,rsvp);
+    var userConnections = await userProfileConnections(userId);
     return userConnections;
 
 }
 
-var updateConnections = function (connectionId, rsvp, userConnections) {
-
-    console.log(`Connection id ${connectionId} updated`);
-    userConnections.forEach(element => {
-        if (element.connectionId === connectionId) {
-            element.rsvp = rsvp;
-        }
-    });
-
-    return userConnections;
-}
-
-var getConnections = function () {
+async function getConnections () {
 
     var users = userObj.getUsers();
-
-    // Choosing random user between 1 and 2 to present the corresponding hardcoded Connections under the userProfile for specific user
-   // var userId = Math.round(Math.random());  
-
-   // var registeredConnections = users[userId].userProfile.userConnection;
-
-  //  console.log('Loading Users upon sign in' + JSON.stringify(registeredConnections));
-
+    console.log("users= "+users);
     return users;
 }
 
-// Emptying the profile upon SignOut
-var emptyProfile = function (sessionObj) {
+async function signOut(sessionObj) {
 
     console.log(`Session object destroyed`);
     sessionObj.destroy();
 
 }
 
-// checking if the Connection is already registred and returns true if present / false if not
-var checkConnectionRegistered = function (connectionId, userConnections) {
+async function userProfileConnections(userId){
 
-    var Connection = userConnections.find(x => x.connectionId === connectionId);
-
-    if (Connection == null || Connection == undefined) {
-        console.log('Selected Connection not present in user registered Connections');
-        return false;
-    }
-    console.log('Selected Connection present in user registered Connections');
-    return true;
-
+    var connections = await userConnection.getUserProfileconnections(userId);
+    console.log('Service Class'+JSON.stringify(connections));
+    return connections;
 }
 
-module.exports = { emptyProfile, getConnections, updateConnections, removeConnections, addConnections, checkConnectionRegistered };
+async function checkConnectionRegistered ( connectionId, userConnection) {
+
+    var connection = await userConnection.find(x => x.connectionId === connectionId);
+
+    if (connection == null || connection == undefined) {
+        console.log('Selected connection not present in user registered connections');
+        return false;
+    }
+    console.log('Selected connection present in user registered connections');
+    return true;
+}
+
+module.exports = { signOut, userProfileConnections, getConnections, updateConnections, removeConnections, addConnections, checkConnectionRegistered };

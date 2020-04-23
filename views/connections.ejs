@@ -10,17 +10,18 @@
     <%- include ('partials/header.ejs') %>
     <%- include ('partials/navigation.ejs') %>
 
-    <div class="content">
-        <h2><%= ConcertConnections[1].topic %></h2>
-        <% for(var i=0; i < ConcertConnections.length; i++) { %>
-            <a href="/connections?connectionId=<%= ConcertConnections[i].Id %>"><%= ConcertConnections[i].Name %></a><br>
-        <% } %>
-        <h2><%= LiveConnections[1].topic %></h2>
-        <% for(var i=0; i < LiveConnections.length; i++) { %>
-            <a href="/connections?connectionId=<%= LiveConnections[i].Id %>"><%= LiveConnections[i].Name %></a><br>
+    <div class="connect">
+        <% console.log("swd"+categories.length); %>
+        <% for(var i = 0; i < categories.length; i++) { %>
+            <h4> <%= categories[i] %> </h4>
+            <% for(var j = 0; j < connection.length; j++) { %>
+                <% if(connection[j].topic === categories[i]) { %>
+                <a href="/connections?connectionId=<%= connection[j].Id %>"><%= connection[j].Name %></a><br>
+                <%	}  %>
+            <% } %>
         <% } %>
     </div>
-
+    
     <%- include ('partials/footer.ejs') %>
 
 </body>

@@ -10,17 +10,19 @@
     <%- include ('partials/header.ejs') %>
     <%- include ('partials/navigation.ejs') %>
 
-    <form class="newconnect">
+    <form class="newconnect" action="/addConnection" method="POST">
         <label for="topic">Topic: </label>
-        <input type="text" id="topic" name="topic"><br><br>
-        <label for="name">Name: </label>
-        <input type="text" id="name" name="name"><br><br>
+        <input type="text" id="topic" name="topic" required><br><br>
+        <label for="Name">Name: </label>
+        <input type="text" id="Name" name="Name" required><br><br>
         <label for="details">Details: </label>
-        <input type="text" id="details" name="details"><br><br>
-        <label for="where">Where: </label>
-        <input type="text" id="where" name="location"><br><br>
-        <label for="when">When: </label>
-        <input type="date" id="when" name="when">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+        <input type="text" id="details" name="details" required><br><br>
+        <label for="location">Location: </label>
+        <input type="text" id="location" name="location" required><br><br>
+        <label for="date">Date: </label>
+        <input type="date" id="date" name="date" required><br><br>
+        <label for="time">Time: </label>
+        <input type="text" id="time" name="time" required>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
         <input class="submit" type="submit" value="Submit">
     </form>
 

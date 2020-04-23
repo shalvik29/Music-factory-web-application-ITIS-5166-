@@ -9,17 +9,19 @@ router.use(session({
 }));
 
 // List all connections from savedConnections page
-router.get('/myConnections', (req, res) => {
+router.get('/myConnections', async (req, res) => {
     if (req.session.users == null || req.session.users == undefined) {
-        req.session.users = userProfile.getConnections();
-
-        var randomUser = Math.round(Math.random());
-
-        req.session.userId = req.session.users[randomUser].userId;
-        req.session.userName = req.session.users[randomUser].firstName;
-        // console.log(`Id: ${req.session.userId} Name: ${req.session.userName}`);
-        req.session.userEvents = req.session.users[randomUser].userProfile.userEvent;
         
+        req.session.users = await userProfile.getConnections();
+
+        req.session.userId = req.session.users[0].userId;
+        req.session.userName = req.session.users[0].firstName;
+        
+        console.log(`User Logged In with Id: ${req.session.userId} and Name: ${req.session.userName}`);
+
+        // req.session.userEvents = req.session.users[randomUser].userProfile.userEvent;
+        req.session.userEvents = await userProfile.userProfileConnections(req.session.userId);
+        console.log("shah"+req.session.userEvents);
         res.render('savedConnections', { userEvents: req.session.userEvents, userName: req.session.userName });
     }
     else{
@@ -28,7 +30,7 @@ router.get('/myConnections', (req, res) => {
 });
 
 // Add connection into savedConnections page
-router.get('/save', (req, res) => {
+router.get('/save', async(req, res) => {
     var id = parseInt(req.query.connectionId);
     var rsvp = req.query.rsvp;
 
@@ -37,35 +39,35 @@ router.get('/save', (req, res) => {
     if (req.session.userEvents == null || req.session.userEvents == undefined) {
         return res.redirect('/login');
     }
-    var status = userProfile.checkConnectionRegistered(id, req.session.userEvents);
-
+    var status = await userProfile.checkConnectionRegistered(id, req.session.userEvents);
+    console.log("status"+status);
     if (status) {
         return res.redirect('./update');
 
     } else {
-        req.session.userEvents = userProfile.addConnections(id, rsvp, req.session.userEvents);
+        console.log("userId::::"+req.session.userId);
+        req.session.userEvents = await userProfile.addConnections(id, rsvp, req.session.userId, req.session.userEvents);
     }
     res.render('savedConnections', { userEvents: req.session.userEvents, userName: req.session.userName});
 });
 
 // Update the connection with specific RSVP
-router.get('/update', (req, res) => {
-    req.session.userEvents = userProfile.updateConnections(req.session.connectionId, req.session.rsvp, req.session.userEvents);
+router.get('/update', async (req, res) => {
+    req.session.userEvents = await userProfile.updateConnections(req.session.connectionId, req.session.rsvp, req.session.userId, req.session.userEvents);
     res.render('savedConnections', { userEvents: req.session.userEvents, userName: req.session.userName });
 });
 
 // Delete the connection from savedConnections page
-router.get('/delete', (req, res) => {
+router.get('/delete', async (req, res) => {
     var id = parseInt(req.query.connectionId);
-    // console.log(`Deleted id: ${id} with ${req.session.userEvents}`);
-    req.session.userEvents = userProfile.removeConnections(id, req.session.userEvents);
+    req.session.userEvents = await userProfile.removeConnections(id, req.session.userId, req.session.userEvents);
 
     res.render('savedConnections', { userEvents: req.session.userEvents, userName: req.session.userName });
 });
 
 // Destroy session 
 router.get('/signout', (req, res) => {
-    userProfile.emptyProfile(req.session);
+    userProfile.signOut(req.session);
     return res.redirect('/index');
 });
 
