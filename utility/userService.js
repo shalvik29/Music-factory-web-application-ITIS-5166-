@@ -39,8 +39,16 @@ async function updateConnections (connectionId, rsvp, userId, userConnections) {
 async function getConnections () {
 
     var users = userObj.getUsers();
-    console.log("users= "+users);
+    // console.log("users= "+users);
     return users;
+}
+
+async function getUserByEmail(username){
+
+    var user = await userObj.getUserByEmail(username);
+    // console.log("userrrrrr  "+user);
+    return user;
+
 }
 
 async function signOut(sessionObj) {
@@ -53,7 +61,6 @@ async function signOut(sessionObj) {
 async function userProfileConnections(userId){
 
     var connections = await userProfile.getUserProfileconnections(userId);
-    console.log('Service Class'+JSON.stringify(connections));
     return connections;
 }
 
@@ -69,4 +76,4 @@ async function checkConnectionRegistered ( connectionId, userConnection) {
     return true;
 }
 
-module.exports = { signOut, userProfileConnections, getConnections, updateConnections, removeConnections, addConnections, checkConnectionRegistered };
+module.exports = { signOut, userProfileConnections, getConnections,getUserByEmail, updateConnections, removeConnections, addConnections, checkConnectionRegistered };

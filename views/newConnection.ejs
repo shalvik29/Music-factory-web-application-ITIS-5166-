@@ -10,6 +10,15 @@
     <%- include ('partials/header.ejs') %>
     <%- include ('partials/navigation.ejs') %>
 
+    <div class="content-section">
+        <p id="error"> <% if(errors.length >= 1) { %>
+            <% for(var i = 0; i < errors.length ; i++) { %>
+            <%= errors[i].msg %>
+        <% } %>
+         <% } %>
+        </p>
+    <div>
+
     <form class="newconnect" action="/addConnection" method="POST">
         <label for="topic">Topic: </label>
         <input type="text" id="topic" name="topic" required><br><br>

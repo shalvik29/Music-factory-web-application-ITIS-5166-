@@ -41,11 +41,15 @@ app.get('/contact', function(req,res) {
 });
 
 app.get('/newConnection', function(req,res) {
-    res.render('newConnection', {loggedIn : (req.session.users) ? true: false});
+    res.render('newConnection', {loggedIn : (req.session.users) ? true: false, errors: false});
 });
 
 app.get('/login', function(req,res) {
-    res.render('login', {loggedIn : (req.session.users) ? true: false});
+    res.render('login', {loggedIn : (req.session.users) ? true: false, errors: false});
+});
+
+app.get('/', function(req,res) {
+    res.render('login', {loggedIn : (req.session.users) ? true: false, errors:false});
 });
 
 app.get('/*', function(req,res) {

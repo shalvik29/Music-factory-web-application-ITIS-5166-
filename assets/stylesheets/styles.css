@@ -85,6 +85,14 @@ body {
   height: 435px;
 }
 
+.content-section{
+	height: auto;
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+	width: auto;
+}
+
 .rsvp {
   float: right;
   background-color: white;
@@ -136,7 +144,7 @@ table {
   height: 500px; /* Should be removed. Only for demonstration */
 }
 
-input[type=text] {
+input[type=email] {
   width: 50%;
   padding: 6px 10px;
   margin: 5px 0;

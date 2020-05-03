@@ -11,12 +11,20 @@
     <%- include ('partials/navigation.ejs') %>
 
     <div class="newconnect">
-        <p>Please enter your username and signin</p>
-        <form action="/savedConnections/myConnections">
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username"><br>
+        <h4>User login form</h4>
+        <p id="error">  <% if(errors.length >= 1) { %>
+            <% for(var i = 0; i < errors.length ; i++) { %>
+            <%= errors[i].msg %>
+        <% } %>
+         <% } %>
+        </p>
+        <br>
+        <form action="/savedConnections/login" method="GET">
+            <label for="email">Email: </label>
+            <input type="email" class="form-control" id="username" placeholder="Enter email" name="username"><br>
             <label for="password">Password: </label>
-            <input type="password" id="password" name="name"><br><br>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"><br><br>
+            <input type="hidden" id="action" name="action" value="signIn">
             <input class="submit" type="submit" value="submit">
         </form>
     </div>
